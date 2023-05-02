@@ -1,0 +1,7 @@
+## Interface: 11200
+## Title: Lookup |cff808080by luskanek
+## Author: luskanek
+## Notes: Adds searchboxes to the backpack and tradeskill window that the player can use to look up what they need.
+## Version: 1.0
+
+main.lua
