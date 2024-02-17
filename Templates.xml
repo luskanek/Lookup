@@ -1,0 +1,68 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\FrameXML\UI.xsd">
+    <EditBox name="SearchBoxTemplate" autoFocus="false" virtual="true" inherits="InputBoxTemplate">
+        <TextInsets>
+            <AbsInset left="15" right="20" top="0" bottom="0" />
+        </TextInsets>
+        <HitRectInsets>
+            <AbsInset left="15" right="20" top="0" bottom="0" />
+        </HitRectInsets>
+        <Frames>
+            <Frame>
+                <Size x="14" y="14" />
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parent">
+                        <Offset x="1" y="-2" />
+                    </Anchor>
+                </Anchors>
+                <Backdrop bgFile="Interface\AddOns\Lookup\assets\Search" >
+                    <Color r="1.0" g="1.0" b="1.0" a="0.6" />
+                </Backdrop>
+            </Frame>
+            <Button name="$parentClearButton">
+                <Size x="14" y="14" />
+                <Anchors>
+                    <Anchor point="RIGHT" relativeTo="$parent">
+                        <Offset x="-3" y="0" />
+                    </Anchor>
+                </Anchors>
+                <Backdrop bgFile="Interface\AddOns\Lookup\assets\Clear" >
+                    <Color r="1.0" g="1.0" b="1.0" a="0.6" />
+                </Backdrop>
+                <Scripts>
+                    <OnClick>
+                        local box = this:GetParent()
+
+                        box:SetText("")
+                        box:SetFocus()
+                        box:ClearFocus()
+                    </OnClick>
+                    <OnEnter>
+                        this:SetBackdropColor(1.0, 1.0, 1.0, 1.0)
+                    </OnEnter>
+                    <OnLeave>
+                        this:SetBackdropColor(1.0, 1.0, 1.0, 0.6)
+                    </OnLeave>
+                </Scripts>
+            </Button>
+        </Frames>
+        <Scripts>
+            <OnEditFocusGained>
+                this:SetTextColor(1.0, 1.0, 1.0, 1.0)
+
+                if this:GetText() == "Search" then
+                    this:SetText("")
+                end
+            </OnEditFocusGained>
+            <OnEditFocusLost>
+                this:SetTextColor(0.5, 0.5, 0.5, 1)
+
+                if not string.find(this:GetText(), '%w') then
+                    this:SetText('Search')
+                end
+            </OnEditFocusLost>
+            <OnEnterPressed>
+                this:ClearFocus()
+            </OnEnterPressed>
+        </Scripts>
+    </EditBox>
+</Ui>
