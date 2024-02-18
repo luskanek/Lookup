@@ -7,3 +7,4 @@
 Templates.xml
 
 container.lua
+spellbook.lua
