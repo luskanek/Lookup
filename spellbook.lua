@@ -10,9 +10,14 @@ local function SearchBoxTextChanged()
          for j = current, total do
             for k = 1, 12 do
                local button = _G['SpellButton' .. k]
-               if strfind(strlower(_G[button:GetName() .. 'SpellName']:GetText()), query) then
-                  found = true
-                  return
+               if button and button:IsEnabled() then
+                  local spell = _G[button:GetName() .. 'SpellName']:GetText()
+                  if spell and spell ~= '' then
+                     if strfind(strlower(spell), query) then
+                        found = true
+                        return
+                     end
+                  end
                end
             end
 
